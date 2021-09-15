@@ -48,13 +48,13 @@ public class BJ1260 {
         starter.dfs();
 
         Node.sb.append('\n');
+
         Node.bfs(starter);
 
         System.out.println(Node.sb);
     }
 
     static class Node {
-        private static final Queue<Node> queue = new ArrayDeque<>(1001);
         public static StringBuilder sb = new StringBuilder(100_000);
 
         public int num = 0;
@@ -82,6 +82,8 @@ public class BJ1260 {
         }
 
         public static void bfs(Node start) {
+            Queue<Node> queue = new ArrayDeque<>(1001);
+
             queue.add(start);
             start.isVisitedBfs = true;
 
