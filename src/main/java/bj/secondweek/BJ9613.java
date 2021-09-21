@@ -24,7 +24,14 @@ public class BJ9613 {
                 nums[ni] = Integer.parseInt(st.nextToken());
             }
 
-            int sum = 0;
+            // GCD의 합이 int 자료형을 넘을 가능성이 있다.
+            // 1 <= n <= 100이고
+            // 각 숫자의 최댓값은 1,000,000 이므로
+            // 만약 n 배열에 1,000,000에 가까운 소수들로 이루어져 있다면
+            // n의 순서쌍과 sum의 최댓값은
+            // 100*99*1,000,000 == 99억정도 되므로
+            // int로는 overflow 될 수 있음.
+            long sum = 0;
             int endA = n - 1;
             for (int a = 0; a < endA; a++) {
                 for (int b = a+1; b < n; b++) {
