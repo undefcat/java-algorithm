@@ -30,6 +30,11 @@ public class BJ11724 {
             int b = Integer.parseInt(st.nextToken());
 
             nodes[a].siblings.add(nodes[b]);
+
+            // 같은 간선이 하나만 주어진다고 해서
+            // a -> b만 간선을 추가하면 당연히 안된다!
+            // 왜 단순하게 생각했을까...
+            nodes[b].siblings.add(nodes[a]);
         }
 
         int count = 0;
