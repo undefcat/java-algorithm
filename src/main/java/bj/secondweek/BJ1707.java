@@ -23,24 +23,33 @@ public class BJ1707 {
 
             Deque<Node> stack = new ArrayDeque<>();
 
-            nodes[1].status = Status.GROUP_A;
-            stack.push(nodes[1]);
+            // BFS로 돌렸는데
+            // Connected Components가 여러개인 경우를 고려 못하고
+            // 돌려서 틀렸었다.
+            for (int v = 1; v <= V; v++) {
+                if (nodes[v].status != Status.NON_VISIT) {
+                    continue;
+                }
 
-            while (!stack.isEmpty()) {
-                Node node = stack.pop();
+                nodes[v].status = Status.GROUP_A;
+                stack.push(nodes[v]);
 
-                for (Node n: node.siblings) {
-                    if (n.status == Status.NON_VISIT) {
-                        n.status = node.status.getOpposition();
+                while (!stack.isEmpty()) {
+                    Node node = stack.pop();
 
-                        stack.push(n);
-                        continue;
-                    }
+                    for (Node n: node.siblings) {
+                        if (n.status == Status.NON_VISIT) {
+                            n.status = node.status.getOpposition();
 
-                    if (n.status == node.status) {
-                        System.out.println("NO");
+                            stack.push(n);
+                            continue;
+                        }
 
-                        continue testCase ;
+                        if (n.status == node.status) {
+                            System.out.println("NO");
+
+                            continue testCase;
+                        }
                     }
                 }
             }
