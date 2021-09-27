@@ -34,12 +34,12 @@ public class BJ1978 {
         sieve[0] = false;
         sieve[1] = false;
 
-        for (int n = 2; n < MAX_N; n++) {
+        for (int n = 2; n <= MAX_N; n++) {
             if (!sieve[n]) {
                 continue;
             }
 
-            for (int i = n*n; i < MAX_N; i += n) {
+            for (int i = n*n; i <= MAX_N; i += n) {
                 sieve[i] = false;
             }
         }
