@@ -13,46 +13,75 @@ public class BJ10972 {
         int N = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
 
-        Queue<Integer> pq = new PriorityQueue<>(N+1);
+        PriorityQueue<Integer> pq = new PriorityQueue<>(N);
+        int max = Integer.MIN_VALUE;
 
-        // 순열의 역순으로 들어간다.
-        // 1, 2, 3, 4의 경우
-        // {4, 3, 2, 1} 로 들어가있다.
         int[] picked = new int[N];
-        for (int n = N-1; n >= 0; n--) {
+
+        for (int n = 0; n < N; n++) {
             picked[n] = Integer.parseInt(st.nextToken());
         }
 
-        // 순열의 맨 뒤의 수를 넣는다.
-        pq.add(picked[0]);
-        int cur;
-        for (cur = 1; cur < N; cur++) {
-            int next = pq.peek();
+        // 맨 마지막 순열을 pq에 넣는다.
+        pq.add(picked[N-1]);
 
-            if (picked[cur] < next) {
-                int tmp = picked[cur];
-                picked[cur] = pq.remove();
-                pq.add(tmp);
-                cur--;
+        // 현재 pq에 있는 수 중 가장 큰 수를 추적한다.
+        max = picked[N-1];
 
+        // 마지막 두번째 배열부터 돈다.
+        int cur = N-2;
+        while (cur >= 0) {
+            // 현재 수보다 큰 수가 pq에 있으면
+            // 그 다음 순열이 존재하는 것이기 때문에
+            // break
+            if (picked[cur] < max) {
+                pq.add(picked[cur]);
                 break;
             }
 
             pq.add(picked[cur]);
+            max = picked[cur];
+            cur--;
         }
 
-        if (cur == N) {
+        // 이 경우엔 순서가 정확히 내림차순으로 정렬되어 있는 경우이므로
+        // -1
+        if (cur < 0) {
             System.out.println(-1);
             return;
         }
 
-        while (cur >= 0) {
-            picked[cur] = pq.remove();
-            cur--;
+        // pq에 있는 수를 오름차순으로 담을 큐
+        Queue<Integer> q = new ArrayDeque<>(pq.size());
+        while (true) {
+            int value = pq.remove();
+            if (value > picked[cur]) {
+                picked[cur] = value;
+                cur++;
+                break;
+            }
+
+            q.add(value);
         }
 
-        StringBuilder sb = new StringBuilder(22_222);
-        for (int i = picked.length-1; i >= 0; i--) {
+        while (!pq.isEmpty()) {
+            q.add(pq.remove());
+        }
+
+        while (!q.isEmpty()) {
+            picked[cur++] = q.remove();
+        }
+
+        StringBuilder sb = new StringBuilder(
+                ((10 - 1) * 2) + // 1자리수 + 공백
+                        ((100 - 10) * 3) + // 2자리수 + 공백
+                        ((1000 - 100) * 4) + // 3자리수 + 공백
+                        ((10000 - 1000) * 5) + // 4자리수 + 공백
+                        6 + // 5자리수 + 공백
+                        100 // 여유분
+        );
+
+        for (int i = 0; i < N; i++) {
             sb.append(picked[i]);
             sb.append(' ');
         }
