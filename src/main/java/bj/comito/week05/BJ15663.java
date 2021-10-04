@@ -53,6 +53,7 @@ public class BJ15663 {
             return;
         }
 
+        picked[pickIndex] = 0;
         for (int i = 0; i < N; i++) {
             if (used[i]) {
                 continue;
