@@ -44,5 +44,7 @@ public class BJ15990 {
         }
 
         bw.flush();
+        bw.close();
+        br.close();
     }
 }
