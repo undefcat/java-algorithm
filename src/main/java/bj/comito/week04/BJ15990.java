@@ -28,14 +28,14 @@ public class BJ15990 {
         dp[3][1] = 1;
         dp[3][2] = 1;
 
+        for (int n = 4; n <= 100_000; n++) {
+            dp[n][0] = (dp[n-1][1] + dp[n-1][2]) % MOD;
+            dp[n][1] = (dp[n-2][0] + dp[n-2][2]) % MOD;
+            dp[n][2] = (dp[n-3][0] + dp[n-3][1]) % MOD;
+        }
+
         for (int t = 0; t < T; t++) {
             final int N = Integer.parseInt(br.readLine());
-
-            for (int n = 4; n <= N; n++) {
-                dp[n][0] = (dp[n-1][1] + dp[n-1][2]) % MOD;
-                dp[n][1] = (dp[n-2][0] + dp[n-2][2]) % MOD;
-                dp[n][2] = (dp[n-3][0] + dp[n-3][1]) % MOD;
-            }
 
             long sum = dp[N][0] + dp[N][1] + dp[N][2];
 
