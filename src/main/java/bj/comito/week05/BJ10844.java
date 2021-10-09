@@ -1,4 +1,4 @@
-package bj.comito.week04;
+package bj.comito.week05;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
