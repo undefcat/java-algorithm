@@ -2,16 +2,15 @@ package bj.comito.week05;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BJ1697 {
-    private final static int MAX_RANGE = 100_001;
-    private final static int MAX_VALUE = 123_456_789;
-    private final static int[] dp = new int[MAX_RANGE];
-
     private static int N;
     private static int K;
+
+    private static final boolean[] visited = new boolean[200_001];
 
     private static final BufferedReader br = new BufferedReader(
             new InputStreamReader(System.in), 1<<10
@@ -23,26 +22,90 @@ public class BJ1697 {
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
 
-        if (N > K) {
-            int tmp = N;
-            N = K;
-            K = tmp;
-        }
+        System.out.println(bfs());
+    }
 
-        Arrays.fill(dp, MAX_VALUE);
+    private static int bfs() {
+        final Queue<State> q = new LinkedList<>();
 
-        for (int i = 0; i <= N; i++) {
-            dp[i] = N - i;
-        }
+        q.offer(new State(N, 0));
+        visited[N] = true;
 
-        for (int i = N+1; i <= K; i++) {
-            dp[i] = Math.min(dp[i], dp[i-1] + 1);
+        while (!q.isEmpty()) {
+            State cur = q.poll();
 
-            if (i%2 == 0) {
-                dp[i] = Math.min(dp[i], dp[i/2] + 1);
+            if (cur.position == K) {
+                return cur.time;
+            }
+
+            if (cur.canBack()) {
+                q.offer(cur.back().checkVisited());
+            }
+
+            if (cur.canFront()) {
+                q.offer(cur.front().checkVisited());
+            }
+
+            if (cur.canTeleport()) {
+                q.offer(cur.teleport().checkVisited());
             }
         }
 
-        System.out.println(dp[K]);
+        throw new RuntimeException("UNREACHABLE CODE");
+    }
+
+    static class State {
+        public final int position;
+        public final int time;
+
+        public State(int position, int time) {
+            this.position = position;
+            this.time = time;
+        }
+
+        public boolean canBack() {
+            int next = position - 1;
+            if (next < 0) {
+                return false;
+            }
+
+            return !visited[next];
+        }
+
+        public State back() {
+            return new State(position-1, time+1);
+        }
+
+        public boolean canFront() {
+            int next = position + 1;
+            if (next > 200_000) {
+                return false;
+            }
+
+            return !visited[next];
+        }
+
+        public State front() {
+            return new State(position+1, time+1);
+        }
+
+        public boolean canTeleport() {
+            int next = position * 2;
+            if (next > 200_000) {
+                return false;
+            }
+
+            return !visited[next];
+        }
+
+        public State teleport() {
+            return new State(position*2, time+1);
+        }
+
+        public State checkVisited() {
+            visited[position] = true;
+
+            return this;
+        }
     }
 }
