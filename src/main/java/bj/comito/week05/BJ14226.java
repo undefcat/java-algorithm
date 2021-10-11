@@ -35,16 +35,16 @@ public class BJ14226 {
             }
 
             // 1. 화면에 있는 이모티콘 클립보드에 복사
-            q.offer(cur.copy());
+            q.offer(cur.copy().checkVisited());
 
             // 2. 클립보드 이모티콘 붙여넣기
             if (cur.canPaste()) {
-                q.offer(cur.paste());
+                q.offer(cur.paste().checkVisited());
             }
 
             // 3. 하나 지우기
             if (cur.canRemove()) {
-                q.offer(cur.remove());
+                q.offer(cur.remove().checkVisited());
             }
         }
 
@@ -88,6 +88,12 @@ public class BJ14226 {
 
         public State remove() {
             return new State(clipboard, screen-1, time+1);
+        }
+
+        public State checkVisited() {
+            visited[screen][clipboard] = true;
+
+            return this;
         }
     }
 }
