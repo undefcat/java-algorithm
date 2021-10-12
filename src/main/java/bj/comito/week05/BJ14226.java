@@ -71,7 +71,12 @@ public class BJ14226 {
                 return false;
             }
 
-            return !visited[screen + clipboard][clipboard];
+            int newScreen = screen + clipboard;
+            if (newScreen > 2000) {
+                return false;
+            }
+
+            return !visited[newScreen][clipboard];
         }
 
         public State paste() {
