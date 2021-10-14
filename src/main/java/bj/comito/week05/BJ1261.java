@@ -17,7 +17,7 @@ public class BJ1261 {
 
     public static void main(String[] args) throws Throwable {
         input();
-        bfs();
+        dijkstra();
 
         System.out.println(dist[Y-1][X-1]);
     }
@@ -49,7 +49,7 @@ public class BJ1261 {
         br.close();
     }
 
-    private static void bfs() {
+    private static void dijkstra() {
         PriorityQueue<Coordinate> q = new PriorityQueue<>();
 
         q.offer(new Coordinate(0, 0));
