@@ -29,13 +29,7 @@ public class BJ3055 {
     public static void main(String[] args) throws Throwable {
         input();
 
-        int result = bfs();
-
-        if (result == -1) {
-            System.out.println("KAKTUS");
-        } else {
-            System.out.println(result);
-        }
+        System.out.println(bfs());
     }
 
     private static void input() throws Throwable {
@@ -72,7 +66,7 @@ public class BJ3055 {
         br.close();
     }
 
-    private static int bfs() {
+    private static String bfs() {
         final Queue<int[]> q = new LinkedList<>();
 
         q.offer(new int[]{start[0], start[1], 0});
@@ -80,7 +74,6 @@ public class BJ3055 {
 
         int minute = 0;
 
-        loop:
         while (!q.isEmpty()) {
             final int[] cur = q.poll();
 
@@ -99,7 +92,7 @@ public class BJ3055 {
                 }
 
                 if (forest[y][x] == EXIT) {
-                    return time;
+                    return Integer.toString(time);
                 }
 
                 q.offer(new int[]{y, x, time});
@@ -107,7 +100,7 @@ public class BJ3055 {
             }
         }
 
-        return -1;
+        return Integer.toString(-1);
     }
 
     /**
