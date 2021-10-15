@@ -14,7 +14,15 @@ public class BJ1182 {
     public static void main(String[] args) throws Throwable {
         input();
 
-        System.out.println(pick(0, 0) - 1);
+        int result = pick(0, 0);
+
+        // sum의 시작이 0인데, 공집합인 경우도 포함되어 있으므로
+        // S가 0이면 하나를 빼준다.
+        if (S == 0) {
+            result--;
+        }
+
+        System.out.println(result);
     }
 
     private static void input() throws Throwable {
