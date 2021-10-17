@@ -62,7 +62,7 @@ public class BJ14501_1 {
          * day일에 상담을 받았을 때, 얻을 수 있는 최대 이윤을 계산한다.
          * 이는 at일에 상담을 받았을 때 얻을 수 있는 최대 이윤에 오늘 상담비를 합치면 된다.
          */
-        for (int day = 2; day <= N; day++) {
+        for (int day = 1; day <= N; day++) {
             for (int at = 1; at < day; at++) {
                 // at일에 상담을 받아서 오늘 못받는 경우
                 if (endDays[at] >= day) {
