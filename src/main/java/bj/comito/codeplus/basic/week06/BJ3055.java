@@ -100,7 +100,7 @@ public class BJ3055 {
             }
         }
 
-        return Integer.toString(-1);
+        return "KAKTUS";
     }
 
     /**
