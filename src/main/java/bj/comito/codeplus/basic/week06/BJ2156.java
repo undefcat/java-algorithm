@@ -42,14 +42,23 @@ public class BJ2156 {
         twice[0] = wines[0];
 
         for (int ni = 1; ni < N; ni++) {
-            none[ni] = Math.max(once[ni-1], twice[ni-1]);
+            none[ni] = max(none[ni-1], once[ni-1], twice[ni-1]);
             once[ni] = wines[ni] + none[ni-1];
             twice[ni] = wines[ni] + once[ni-1];
         }
 
-        return Math.max(
-                none[N-1],
-                Math.max(once[N-1], twice[N-1])
-        );
+        return max(none[N-1], once[N-1], twice[N-1]);
+    }
+
+    private static int max(int... nums) {
+        int ret = Integer.MIN_VALUE;
+
+        for (int n: nums) {
+            if (n > ret) {
+                ret = n;
+            }
+        }
+
+        return ret;
     }
 }
