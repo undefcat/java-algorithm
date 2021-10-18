@@ -32,21 +32,20 @@ public class BJ11053 {
     }
 
     private static int dp() {
-        int ans = 1;
+        int ans = Integer.MIN_VALUE;
 
         final int[] length = new int[N];
-        length[N-1] = 1;
 
-        for (int si = N-2; si >= 0; si--) {
+        for (int si = N-1; si >= 0; si--) {
             int candi = 1;
 
-            for (int sj = si+1; sj < N; sj++) {
+            for (int sj = si; sj < N; sj++) {
                 if (sequence[sj] > sequence[si]) {
-                    candi = Math.max(candi, length[sj]);
+                    candi = Math.max(candi, length[sj] + 1);
                 }
             }
 
-            length[si] = candi + 1;
+            length[si] = candi;
             ans = Math.max(ans, length[si]);
         }
 
