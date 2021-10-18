@@ -2,7 +2,6 @@ package bj.comito.codeplus.basic.week06;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BJ11053 {
@@ -51,7 +50,6 @@ public class BJ11053 {
             ans = Math.max(ans, length[si]);
         }
 
-        System.out.println(Arrays.toString(length));
         return ans;
     }
 }
