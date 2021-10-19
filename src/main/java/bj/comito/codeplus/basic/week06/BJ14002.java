@@ -40,7 +40,7 @@ public class BJ14002 {
         Arrays.fill(length, 1);
 
         int maxLength = 0;
-        int maxIndex = -1;
+        int maxIndex = 0;
 
         for (int ni = N-1; ni >= 0; ni--) {
             for (int nj = ni; nj < N; nj++) {
@@ -61,6 +61,10 @@ public class BJ14002 {
         }
 
         final StringBuilder sb = new StringBuilder(1000*1000);
+
+        sb.append(maxLength);
+        sb.append('\n');
+
         int startIndex = maxIndex;
         while (startIndex >= 0) {
             sb.append(sequence[startIndex]);
