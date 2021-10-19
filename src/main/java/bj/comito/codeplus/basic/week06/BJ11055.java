@@ -35,7 +35,7 @@ public class BJ11055 {
         int answer = Integer.MIN_VALUE;
 
         for (int left = N-1; left >= 0; left--) {
-            int maxCandi = Integer.MIN_VALUE;
+            int maxCandi = sequence[left];
 
             sum[left] = sequence[left];
 
