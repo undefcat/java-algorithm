@@ -34,7 +34,7 @@ public class BJ11723_1 {
 
             switch (operator) {
                 case ALL:
-                    bitSet.set(1, 20);
+                    bitSet.set(1, 21);
                     continue;
 
                 case EMPTY:
