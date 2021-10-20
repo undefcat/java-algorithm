@@ -12,7 +12,7 @@ public class BJ11722 {
     public static void main(String[] args) throws Throwable {
         init();
 
-        System.out.println(df());
+        System.out.println(dp());
     }
 
     private static void init() throws Throwable {
@@ -31,7 +31,7 @@ public class BJ11722 {
         }
     }
 
-    private static int df() {
+    private static int dp() {
         int ans = 1;
 
         // l, r: left, right
