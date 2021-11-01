@@ -59,8 +59,8 @@ public class BJ1107 {
 
     private static void pick(int n, final int current) {
         // 500,000 까지 이므로
-        // 최대 7자리까지만 숫자를 만들어 보면 된다.
-        if (n > 7) {
+        // 최대 6 숫자를 만들어 보면 된다.
+        if (n > 6) {
             return;
         }
 
