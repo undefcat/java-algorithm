@@ -47,6 +47,7 @@ public class BJ12851 {
             if (cur.position == K) {
                 time = cur.time;
                 count++;
+                continue;
             }
 
             State next;
