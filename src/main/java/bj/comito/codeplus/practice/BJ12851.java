@@ -44,10 +44,6 @@ public class BJ12851 {
                 break;
             }
 
-            if (visited[cur.position] >= 0 && cur.time > visited[cur.position]) {
-                continue;
-            }
-
             if (cur.position == K) {
                 time = cur.time;
                 count++;
