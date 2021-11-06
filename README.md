@@ -8,3 +8,4 @@
 
 - [undefcat](https://www.acmicpc.net/user/undefcat)
 - [gauri7891](https://www.acmicpc.net/user/gauri7891)
+- [ereted](https://www.acmicpc.net/user/ereted)
