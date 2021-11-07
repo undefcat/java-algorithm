@@ -1,4 +1,4 @@
-package bj.tier.silver5;
+package bj.solvedac.class3;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
