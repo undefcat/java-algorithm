@@ -1,4 +1,4 @@
-package bj.tier.silver5;
+package bj.tier.silver1;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
